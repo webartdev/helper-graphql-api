@@ -1,23 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+// import '../images/amplify.png'
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>Amplify Demo</h2>
       </header>
+      <div className="AppBody">Created a full-stack React app running on the cloud with Cognito, AppSync, GraphQL and DynamoDB.
+      <br/>Used Amplify CI/CD for continues deployment.
+      <h4>Github Source Repository: <a href="https://github.com/webartdev/helper-graphql-api/tree/master">webartdev/helper-graphql-api</a></h4>
+      </div>
     </div>
   );
 }
