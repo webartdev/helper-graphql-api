@@ -1,1 +1,9 @@
-{}
+{
+	"auth": {
+		"familyhelpere1a22332": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
