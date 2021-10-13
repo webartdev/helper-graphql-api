@@ -1,5 +1,5 @@
 projects:
-  blogapi-blogapi:
+  helperAPI:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js
@@ -10,6 +10,6 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src/graphql
-        region: us-west-2
-        apiId: 2oyivsnvinhqvpf6u4i7ztjbna
-        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

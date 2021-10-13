@@ -1,7 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createPost = `mutation CreatePost(
+export const createPost = /* GraphQL */ `
+mutation CreatePost(
   $input: CreatePostInput!
   $condition: ModelPostConditionInput
 ) {
@@ -13,9 +14,22 @@ export const createPost = `mutation CreatePost(
     postBody
     createdAt
     comments {
+      items {
+        id
+        commentOwnerId
+        commentOwnerUsername
+        content
+        createdAt
+      }
       nextToken
     }
     likes {
+      items {
+        id
+        numberLikes
+        likeOwnerId
+        likeOwnerUsername
+      }
       nextToken
     }
   }
@@ -33,9 +47,22 @@ export const updatePost = `mutation UpdatePost(
     postBody
     createdAt
     comments {
+      items {
+        id
+        commentOwnerId
+        commentOwnerUsername
+        content
+        createdAt
+      }
       nextToken
     }
     likes {
+      items {
+        id
+        numberLikes
+        likeOwnerId
+        likeOwnerUsername
+      }
       nextToken
     }
   }
@@ -53,9 +80,22 @@ export const deletePost = `mutation DeletePost(
     postBody
     createdAt
     comments {
+      items {
+        id
+        commentOwnerId
+        commentOwnerUsername
+        content
+        createdAt
+      }
       nextToken
     }
     likes {
+      items {
+        id
+        numberLikes
+        likeOwnerId
+        likeOwnerUsername
+      }
       nextToken
     }
   }
@@ -76,6 +116,12 @@ export const createComment = `mutation CreateComment(
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
     content
     createdAt
@@ -97,6 +143,12 @@ export const updateComment = `mutation UpdateComment(
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
     content
     createdAt
@@ -118,6 +170,12 @@ export const deleteComment = `mutation DeleteComment(
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
     content
     createdAt
@@ -140,6 +198,12 @@ export const createLike = `mutation CreateLike(
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
   }
 }
@@ -160,6 +224,12 @@ export const updateLike = `mutation UpdateLike(
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
   }
 }
@@ -180,6 +250,12 @@ export const deleteLike = `mutation DeleteLike(
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
   }
 }

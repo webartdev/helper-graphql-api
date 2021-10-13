@@ -10,9 +10,22 @@ export const onCreatePost = `subscription OnCreatePost {
     postBody
     createdAt
     comments {
+      items {
+        id
+        commentOwnerId
+        commentOwnerUsername
+        content
+        createdAt
+      }
       nextToken
     }
     likes {
+      items {
+        id
+        numberLikes
+        likeOwnerId
+        likeOwnerUsername
+      }
       nextToken
     }
   }
@@ -27,9 +40,22 @@ export const onUpdatePost = `subscription OnUpdatePost {
     postBody
     createdAt
     comments {
+      items {
+        id
+        commentOwnerId
+        commentOwnerUsername
+        content
+        createdAt
+      }
       nextToken
     }
     likes {
+      items {
+        id
+        numberLikes
+        likeOwnerId
+        likeOwnerUsername
+      }
       nextToken
     }
   }
@@ -44,9 +70,22 @@ export const onDeletePost = `subscription OnDeletePost {
     postBody
     createdAt
     comments {
+      items {
+        id
+        commentOwnerId
+        commentOwnerUsername
+        content
+        createdAt
+      }
       nextToken
     }
     likes {
+      items {
+        id
+        numberLikes
+        likeOwnerId
+        likeOwnerUsername
+      }
       nextToken
     }
   }
@@ -64,6 +103,12 @@ export const onCreateComment = `subscription OnCreateComment {
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
     content
     createdAt
@@ -82,6 +127,12 @@ export const onUpdateComment = `subscription OnUpdateComment {
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
     content
     createdAt
@@ -100,6 +151,12 @@ export const onDeleteComment = `subscription OnDeleteComment {
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
     content
     createdAt
@@ -119,6 +176,12 @@ export const onCreateLike = `subscription OnCreateLike {
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
   }
 }
@@ -136,6 +199,12 @@ export const onUpdateLike = `subscription OnUpdateLike {
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
   }
 }
@@ -153,6 +222,12 @@ export const onDeleteLike = `subscription OnDeleteLike {
       postTitle
       postBody
       createdAt
+      comments {
+        nextToken
+      }
+      likes {
+        nextToken
+      }
     }
   }
 }
