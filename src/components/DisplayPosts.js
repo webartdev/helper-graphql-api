@@ -1,50 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { listPosts } from '../graphql/queries';
-import { createPost } from '../graphql/mutations';
+// import { createPost } from '../graphql/mutations';
 import { API, graphqlOperation } from 'aws-amplify';
-import PostsForm from './PostsForm';
+import Post from './Post';
+// import { onCreatePost } from '../src/graphql/subscriptions';
 
-const DisplayPosts = ({state, dispatch}) => {
-  const [posts, setPosts] = useState([]);
+const DisplayPosts = ({state,
+   posts,
+    dispatch}) => {
+  // const [posts, setPosts] = useState([]);
+
+  const getPosts = async () => {
+    const { data } = await API.graphql(graphqlOperation(listPosts));
+    // setPosts(data.listPosts.items);
+    dispatch({type: 'UPDATE_POSTS', value: data.listPosts.items})
+    console.log('Display All posts: ', data.listPosts.items);
+  };
 
   useEffect(() => {
-    const getPosts = async () => {
-      const result = await API.graphql(graphqlOperation(listPosts));
-      setPosts(result.data.listPosts.items);
-      console.log('Display All posts: ', result);
-    };
- 
     getPosts();
   }, []);
 
   // useEffect(() => {
-  //   const createPost = async () => {
-  //     const result = await API.graphql(graphqlOperation(createPost));
-  //     setPosts(result.data.createPost.items);
-  //     console.log('All post: ', result);
-  //   };
- 
-  //   createPost();
-  // }, []);
-
-  // async function savePost() {
-  //   const { postBody } = state;
-  //   const result = await API.graphql(
-  //     graphqlOperation(createPost, { input: postBody }));
-  //   console.log('Save post result: ', result);
-  // }
+  //   let subscription = API.graphql(graphqlOperation(onCreatePost))
+  // })
  
   return <div>
-  <ul>
+
     {posts.map(item => 
-    <li key={item.id}> 
-    {/* {item.id} {item.createdAt}  */}
-    {item.postBody} {item.postTitle}
-     {/* {item.postOwnerId} {item.postOwnerUsername} */}
-     </li> 
+    
+    <Post key={item.id} {...item} dispatch={dispatch} />
+ 
     )}
     {/* <PostsForm /> */}
-  </ul>
+  
 </div>;
 };
  
