@@ -5,9 +5,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import Post from './Post';
 // import { onCreatePost } from '../src/graphql/subscriptions';
 
-const DisplayPosts = ({state,
-   posts,
-    dispatch}) => {
+const DisplayPosts = ({state, posts, dispatch}) => {
   // const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
@@ -21,19 +19,14 @@ const DisplayPosts = ({state,
     getPosts();
   }, []);
 
-  // useEffect(() => {
-  //   let subscription = API.graphql(graphqlOperation(onCreatePost))
-  // })
+//   useEffect(() => {
+//     let subscription = API.graphql(graphqlOperation(onCreatePost))
+//   })
  
   return <div>
-
     {posts.map(item => 
-    
     <Post key={item.id} {...item} dispatch={dispatch} />
- 
     )}
-    {/* <PostsForm /> */}
-  
 </div>;
 };
  

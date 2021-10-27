@@ -71,7 +71,7 @@ query GetComment($id: ID!) {
       postBody
       createdAt
       comments {
-        nextToken
+        
       }
       likes {
         nextToken

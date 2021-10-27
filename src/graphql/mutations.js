@@ -13,25 +13,25 @@ mutation CreatePost(
     postTitle
     postBody
     createdAt
-    comments {
-      items {
-        id
-        commentOwnerId
-        commentOwnerUsername
-        content
-        createdAt
-      }
-      nextToken
-    }
-    likes {
-      items {
-        id
-        numberLikes
-        likeOwnerId
-        likeOwnerUsername
-      }
-      nextToken
-    }
+    # comments {
+    #   items {
+    #     id
+    #     commentOwnerId
+    #     commentOwnerUsername
+    #     content
+    #     createdAt
+    #   }
+    #   nextToken
+    # }
+    # likes {
+    #   items {
+    #     id
+    #     numberLikes
+    #     likeOwnerId
+    #     likeOwnerUsername
+    #   }
+    #   nextToken
+    # }
   }
 }
 `;
