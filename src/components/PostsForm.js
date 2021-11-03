@@ -36,20 +36,21 @@ const PostsForm = ({state, dispatch, savePost}) => {
   return (
     <form onSubmit={formik.handleSubmit}>
         <TextField
+          autocomplete="off"
           variant="outlined"
           fullWidth
           id="postBody"
           label="post Body" 
           name="postBody"
           error={true ? false : formik.touched.postBody && Boolean(formik.errors.postTitle) }
-
           // error={formik.touched.postBody || Boolean(formik.errors.postBody)}
-          // helperText={formik.touched.postBody ? formik.errors.postBody: ""}
+          helperText={formik.touched.postBody ? formik.errors.postBody: ""}
           value={state.postBody} 
           onChange={(e) => formik.handleChange && dispatch({type: 'POST_BODY', value: e.target.value})}
         />
         <br/>
         <TextField
+          autocomplete="off"
           variant="outlined"
           fullWidth
           id="postTitle"

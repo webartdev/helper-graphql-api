@@ -3,7 +3,6 @@ import './App.css';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createPost, deletePost } from '../src/graphql/mutations';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import DisplayPosts from './components/DisplayPosts';
 import DisplayTable from './components/DisplayTable';
 import PostsForm from "./components/PostsForm";
 import { onCreatePost } from '../src/graphql/subscriptions';
@@ -51,11 +50,13 @@ function postReducer(state = initialState, action){
         postOwnerUsername: ''
       }
     case 'EDIT_POST': { 
+      console.log("edit action value:", action.value)
       const newValue = {...action.value}
       console.log("newValue here:", newValue)
       return {
         ...state,
-        id: newValue.id,
+        isModalOpen: true,
+        // id: newValue.id,
         postOwnerUsername: newValue.postOwnerUsername,
         postOwnerId: newValue.postOwnerId,
         postTitle: newValue.postTitle,
@@ -82,6 +83,7 @@ async function deletePostById(id) {
 function App() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(postReducer, initialState)
+
   useEffect(() => {
     let subscription = API.graphql(
       graphqlOperation(onCreatePost)).subscribe({
@@ -125,10 +127,7 @@ function App() {
             </Button>
         </div>
       </Modal>
-  
       <DisplayTable dispatch={dispatch} />
-
-      <DisplayPosts posts={state.posts} dispatch={dispatch} />
       <br /><hr />
     </div>
   </div>
