@@ -3,19 +3,10 @@ import { TextField, Button } from "@material-ui/core";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-
 const validationSchema = yup.object({
   postBody: yup.string().required(),
-  // postBody: yup
-  //   .string("Enter your postBody")
-  //   // .email("Enter a valid email")
-  //   .required("postBody is required"),
   postTitle: yup.string().required(),
   postOwnerId: yup.string().required(),
-  // postTitle: yup
-  //   .string("Enter your postTitle")
-  //   .min(8, "postTitle should be of minimum 8 characters length")
-  //   .required("postTitle is required"),
   postOwnerUsername: yup
     .string("Enter your postOwnerUsername")
     .required("postOwnerUsername is required")
@@ -43,7 +34,6 @@ const PostsForm = ({state, dispatch, savePost}) => {
           label="post Body" 
           name="postBody"
           error={true ? false : formik.touched.postBody && Boolean(formik.errors.postTitle) }
-          // error={formik.touched.postBody || Boolean(formik.errors.postBody)}
           helperText={formik.touched.postBody ? formik.errors.postBody: ""}
           value={state.postBody} 
           onChange={(e) => formik.handleChange && dispatch({type: 'POST_BODY', value: e.target.value})}
@@ -60,9 +50,6 @@ const PostsForm = ({state, dispatch, savePost}) => {
           value={state.postTitle} 
           onChange={(e) => dispatch({type: 'POST_TITLE', value: e.target.value})}
           error={true ? false : formik.touched.postTitle && Boolean(formik.errors.postTitle) }
-         
-          // error={formik.touched.postTitle && Boolean(formik.errors.postTitle)}
-          // helperText={formik.touched.postTitle ? formik.errors.postTitle: ""}
         />
         <br/>
         <TextField
@@ -75,9 +62,6 @@ const PostsForm = ({state, dispatch, savePost}) => {
           value={state.postOwnerId} 
           onChange={(e) => dispatch({type: 'POST_OWNER_ID', value: e.target.value})}
           error={true ? false : formik.touched.postOwnerId && Boolean(formik.errors.postTitle) }
-          
-          // error={formik.touched.postOwnerId && Boolean(formik.errors.postOwnerId)}
-          // helperText={formik.touched.postOwnerId ? formik.errors.postOwnerId: ""}
         />
         <br/>
         <TextField
