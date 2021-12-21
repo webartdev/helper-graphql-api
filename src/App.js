@@ -7,7 +7,7 @@ import { onCreatePost } from '../src/graphql/subscriptions';
 import ModalNew from '../src/components/modal/ModalNew';
 // import CustomCard from "../src/components/CustomCard";
 import postReducer, {initialState} from '../src/reducers/mainReducer';
-
+// import UploadImage from "../src/components/HandleImages/UploadImage"
 function App() {
   const [state, dispatch] = useReducer(postReducer, initialState)
 
@@ -35,6 +35,7 @@ function App() {
       <div>
       {/* <CustomCard /> */}
       </div>
+      {/* <UploadImage /> */}
       <DisplayTable dispatch={dispatch} />
       <br />
     </div>
