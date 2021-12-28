@@ -1,31 +1,40 @@
+
+import Charts from "./assets/charts.jpg";
+import Maps from "./assets/maps.jpeg";
+import Portfolio from "./assets/portfolio.jpeg";
+import Posts from "./assets/posts.jpeg";
+
 const NavLinks = {
     data: [
         {
             name: "Dashboard",
             icon: "assesment",
             url: "/",
-            image: "http://i.pravatar.cc/300?img=1",
-
-
-
+            // image: Portfolio
+        },
+        {
+            name: "Potfolio",
+            icon: "assesment",
+            url: "/portfolio",
+            image: Portfolio
         },
         {
             name: "Posts",
             icon: "map",
             url: "/posts",
-            image: "http://i.pravatar.cc/300?img=2"
+            image: Posts
         },
         {
             name: "Charts",
             icon: "track_changes",
             url: "/charts",
-            image: "http://i.pravatar.cc/300?img=3",
+            image: Charts,
         },
         {
             name: "Maps",
             icon: "store_mall_directory",
             url: "/maps",
-            image: "http://i.pravatar.cc/300?img=4"
+            image: Maps
         },
     ]
 }

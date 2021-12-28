@@ -1,11 +1,11 @@
 {
-    "AppSyncApiName": "helperAPI",
-    "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": "false",
-    "AuthCognitoUserPoolId": {
-        "Fn::GetAtt": [
-            "authfamilyhelpere1a22332",
-            "Outputs.UserPoolId"
-        ]
-    }
+  "AppSyncApiName": "helperAPI",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": "false",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authfamilyhelpere1a22332",
+      "Outputs.UserPoolId"
+    ]
+  }
 }
