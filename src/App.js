@@ -1,46 +1,31 @@
-import React, { useReducer, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import './App.css';
-import { API, graphqlOperation } from 'aws-amplify';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import DisplayTable from './components/DisplayTable';
-import { onCreatePost } from '../src/graphql/subscriptions';
-import ModalNew from '../src/components/modal/ModalNew';
-// import CustomCard from "../src/components/CustomCard";
-import postReducer, {initialState} from '../src/reducers/mainReducer';
+import { AmplifyAuthenticator, AmplifySignOut, AmplifySignIn } from '@aws-amplify/ui-react';
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import AppWrapper from '../src/layout/layout'
 // import UploadImage from "../src/components/HandleImages/UploadImage"
 function App() {
-  const [state, dispatch] = useReducer(postReducer, initialState)
+  const [authState, setAuthState] = React.useState();
+  const [user, setUser] = React.useState();
 
   useEffect(() => {
-    let subscription = API.graphql(
-      graphqlOperation(onCreatePost)).subscribe({
-      next: ({provider, value}) => {
-      // console.log("provider value", value);
-      dispatch({type: 'UPDATE_POSTS', value: [value.data.onCreatePost]});
-    },
-  });
-  return () => subscription.unsubscribe();
-  }, [])
+      return onAuthUIStateChange((nextAuthState, authData) => {
+          setAuthState(nextAuthState);
+          setUser(authData)
+      });
+  }, []);
 
-
-  return (
-    <div>
-      <AmplifySignOut />
-      <header className="App-header">
-        <h2>Amplify Demo</h2>
-      </header>
-      <div className="AppBody">
-      <button onClick={() => dispatch({type: 'OPEN_MODAL'})}><span>+ </span>Add New Record</button>
-      <ModalNew state={state} dispatch={dispatch} />
-      <div>
-      {/* <CustomCard /> */}
-      </div>
-      {/* <UploadImage /> */}
-      <DisplayTable dispatch={dispatch} />
-      <br />
+  return authState === AuthState.SignedIn && user ? (
+    <div className="App">
+       <AmplifySignOut />
+  
+       <AppWrapper />
+     {/* <div>Hello, {user.username} </div>  */}
+     {/* {console.log("user", user)} */}
     </div>
-  </div>
-  );
+  ) : (
+    <AmplifyAuthenticator />
+);
 }
 
-export default withAuthenticator(App);
+export default App;

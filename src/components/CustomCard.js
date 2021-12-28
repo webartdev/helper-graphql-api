@@ -1,5 +1,4 @@
 import React from "react";
-import { createGenerateClassName } from "@material-ui/core/styles";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
@@ -7,13 +6,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
-
-const faces = [
-  "http://i.pravatar.cc/300?img=1",
-  "http://i.pravatar.cc/300?img=2",
-  "http://i.pravatar.cc/300?img=3",
-  "http://i.pravatar.cc/300?img=4"
-];
+import { useNavigate } from 'react-router-dom';
+import Grid from "@material-ui/core/Grid"
 
 const muiBaseTheme = createMuiTheme();
 
@@ -58,41 +52,44 @@ const theme = {
   }
 };
 
-function CustomCard() {
+function CustomCard(props) {
+  const { card } = props
+  const navigate = useNavigate();
+  const sendSubmit = () => {
+    navigate(card.url);
+};
   return (
-    // <JssProvider generateClassName={generateClassName}>
-      <MuiThemeProvider theme={createMuiTheme(theme)}>
-        <div className="App">
-          <Card className={"MuiEngagementCard--01"}>
-            <CardMedia
-              image={
-                "https://image.freepik.com/free-photo/river-foggy-mountains-landscape_1204-511.jpg"
-              }
-            />
-            <CardContent>
-              <Typography
-                className={"MuiTypography--heading"}
-                variant={"h6"}
-                gutterBottom
-              >
-                Nature Around Us
-              </Typography>
-              <Typography
-                className={"MuiTypography--subheading"}
-                variant={"caption"}
-              >
-                We are going to learn different kinds of species in nature that
-                live together to form amazing environment.
-              </Typography>
-              <Divider light />
-              {faces.map(face => (
-                <Avatar key={face} src={face} />
-              ))}
-            </CardContent>
-          </Card>
-        </div>
-      </MuiThemeProvider>
-    // </JssProvider>
+    <MuiThemeProvider theme={createMuiTheme(theme)}>
+      <Grid item xs={12} sm={6} md={4} lg={3} key={card.name}>
+        <Card
+          className={"MuiEngagementCard--01"}
+          onClick={sendSubmit}
+          style={{cursor: "pointer"}}
+        >
+          <CardMedia
+            image={card.image}
+          />
+          <CardContent>
+            <Typography
+              className={"MuiTypography--heading"}
+              variant={"h6"}
+              gutterBottom
+            >
+              {card.name}
+            </Typography>
+            <Typography
+              className={"MuiTypography--subheading"}
+              variant={"caption"}
+            >
+              {card.icon}
+            </Typography>
+            <Divider light />
+            <Avatar key={card.name} src={card.image} />
+          </CardContent>
+        </Card>
+      </Grid>
+    </MuiThemeProvider>
+
   );
 }
 

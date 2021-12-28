@@ -1,4 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
+const AWS = require("aws-sdk");
 
 Parameters:
   env:
@@ -225,7 +226,8 @@ Resources:
             - ' if (event.RequestType == ''Update'' || event.RequestType == ''Create'') {'
             - '   const params = {'
             - '     ClientId: event.ResourceProperties.clientId,'
-            - '     UserPoolId: event.ResourceProperties.userpoolId'
+            - '     CSS: styles,
+                    UserPoolId: event.ResourceProperties.userpoolId'
             - '   };'
             - '   identity.describeUserPoolClient(params).promise()'
             - '     .then((res) => {'
