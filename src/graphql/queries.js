@@ -1,8 +1,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getPost = /* GraphQL */ `
-query GetPost($id: ID!) {
+export const getPost = `query GetPost($id: ID!) {
   getPost(id: $id) {
     id
     postOwnerId
@@ -32,8 +31,7 @@ query GetPost($id: ID!) {
   }
 }
 `;
-export const listPosts = /* GraphQL */ `
-query ListPosts(
+export const listPosts = `query ListPosts(
   $filter: ModelPostFilterInput
   $limit: Int
   $nextToken: String
@@ -57,8 +55,7 @@ query ListPosts(
   }
 }
 `;
-export const getComment = /* GraphQL */ `
-query GetComment($id: ID!) {
+export const getComment = `query GetComment($id: ID!) {
   getComment(id: $id) {
     id
     commentOwnerId
@@ -82,8 +79,7 @@ query GetComment($id: ID!) {
   }
 }
 `;
-export const listComments = /* GraphQL */ `
-query ListComments(
+export const listComments = `query ListComments(
   $filter: ModelCommentFilterInput
   $limit: Int
   $nextToken: String
@@ -108,7 +104,7 @@ query ListComments(
   }
 }
 `;
-export const getLike = /* GraphQL */ `query GetLike($id: ID!) {
+export const getLike = `query GetLike($id: ID!) {
   getLike(id: $id) {
     id
     numberLikes
@@ -131,7 +127,7 @@ export const getLike = /* GraphQL */ `query GetLike($id: ID!) {
   }
 }
 `;
-export const listLikes = /* GraphQL */ `query ListLikes(
+export const listLikes = `query ListLikes(
   $filter: ModelLikeFilterInput
   $limit: Int
   $nextToken: String

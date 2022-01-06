@@ -1,8 +1,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createPost = /* GraphQL */ `
-mutation CreatePost(
+export const createPost = `mutation CreatePost(
   $input: CreatePostInput!
   $condition: ModelPostConditionInput
 ) {
@@ -13,29 +12,29 @@ mutation CreatePost(
     postTitle
     postBody
     createdAt
-    # comments {
-    #   items {
-    #     id
-    #     commentOwnerId
-    #     commentOwnerUsername
-    #     content
-    #     createdAt
-    #   }
-    #   nextToken
-    # }
-    # likes {
-    #   items {
-    #     id
-    #     numberLikes
-    #     likeOwnerId
-    #     likeOwnerUsername
-    #   }
-    #   nextToken
-    # }
+    comments {
+      items {
+        id
+        commentOwnerId
+        commentOwnerUsername
+        content
+        createdAt
+      }
+      nextToken
+    }
+    likes {
+      items {
+        id
+        numberLikes
+        likeOwnerId
+        likeOwnerUsername
+      }
+      nextToken
+    }
   }
 }
 `;
-export const updatePost = /* GraphQL */ `mutation UpdatePost(
+export const updatePost = `mutation UpdatePost(
   $input: UpdatePostInput!
   $condition: ModelPostConditionInput
 ) {
@@ -46,29 +45,29 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
     postTitle
     postBody
     createdAt
-    # comments {
-    #   items {
-    #     id
-    #     commentOwnerId
-    #     commentOwnerUsername
-    #     content
-    #     createdAt
-    #   }
-    #   nextToken
-    # }
-    # likes {
-    #   items {
-    #     id
-    #     numberLikes
-    #     likeOwnerId
-    #     likeOwnerUsername
-    #   }
-    #   nextToken
-    # }
+    comments {
+      items {
+        id
+        commentOwnerId
+        commentOwnerUsername
+        content
+        createdAt
+      }
+      nextToken
+    }
+    likes {
+      items {
+        id
+        numberLikes
+        likeOwnerId
+        likeOwnerUsername
+      }
+      nextToken
+    }
   }
 }
 `;
-export const deletePost = /* GraphQL */ `mutation DeletePost(
+export const deletePost = `mutation DeletePost(
   $input: DeletePostInput!
   $condition: ModelPostConditionInput
 ) {
