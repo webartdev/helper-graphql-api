@@ -23,10 +23,5 @@
 			}
 		}
 	},
-	"storage": {
-		"HelperBucket": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+	"storage": {}
 }
