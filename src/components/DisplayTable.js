@@ -3,6 +3,7 @@ import React from 'react'
 import { CircularProgress, Button } from "@material-ui/core"
 import { ACTIONS } from '../reducers/modalReducer'
 import GeneralTable from "./GeneralTable"
+import CollapsibleRow from '../pages/CollapsibleRow'
 
 const AddNew = () => {
   return (
@@ -65,6 +66,11 @@ const DisplayTable = ({dispatch, data, isLoading}) => {
 
   return (
     <GeneralTable
+     detailPanelType="single"
+     detailPanel={(rowData) => {
+      //  console.log("rowData", rowData)
+       return <CollapsibleRow {...rowData}/>
+     }}
       title="Post Records"
       columns={defaultOptions.columns}
       options={defaultOptions.options}

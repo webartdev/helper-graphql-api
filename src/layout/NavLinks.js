@@ -1,5 +1,5 @@
 
-import Charts from "./assets/charts.jpg";
+import Charts from "./assets/charts.jpeg";
 import Maps from "./assets/maps.jpeg";
 import Portfolio from "./assets/portfolio.jpeg";
 import Posts from "./assets/table.jpg";
