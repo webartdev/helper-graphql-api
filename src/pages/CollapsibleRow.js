@@ -7,6 +7,7 @@ import Box from "@material-ui/core/Box";
     // console.log("rowData", rowData),
     <Box margin={1} border={0} borderLeft={3} pt={1}>
       <div>
+          <div>Additional info:</div>
          <span>ID:</span> <span>{rowData.id}</span>
       </div>
       <div>
