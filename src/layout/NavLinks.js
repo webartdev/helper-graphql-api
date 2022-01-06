@@ -1,8 +1,8 @@
 
 // import Charts from "./assets/charts.jpeg";
-import Maps from "./assets/maps.jpeg";
-import Portfolio from "./assets/portfolio.jpeg";
-import Posts from "./assets/table.jpg";
+// import Maps from "./assets/maps.jpeg";
+// import Portfolio from "./assets/portfolio.jpeg";
+// import Posts from "./assets/table.jpg";
 
 const NavLinks = {
     data: [
@@ -10,13 +10,13 @@ const NavLinks = {
             name: "Potfolio",
             icon: "track_changes",
             url: "/portfolio",
-            image: Portfolio
+            // image: Portfolio
         },
         {
             name: "Posts",
             icon: "store_mall_directory",
             url: "/posts",
-            image: Posts
+            // image: Posts
         },
         // {
         //     name: "Charts",
@@ -28,7 +28,7 @@ const NavLinks = {
             name: "Maps",
             icon: "map",
             url: "/maps",
-            image: Maps
+            // image: Maps
         },
     ]
 }

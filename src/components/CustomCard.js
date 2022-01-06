@@ -65,9 +65,9 @@ function CustomCard(props) {
           onClick={sendSubmit}
           style={{cursor: "pointer"}}
         >
-          <CardMedia
+          {/* <CardMedia
             image={card.image}
-          />
+          /> */}
           <CardContent>
             <Typography
               className={"MuiTypography--heading"}
