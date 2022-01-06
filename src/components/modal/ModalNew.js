@@ -41,7 +41,7 @@ export default function ModalNew({
           onClick={() => handleClose()}
         >
           Cancel
-            </Button>
+        </Button>
       </div>
     </Modal>
   )

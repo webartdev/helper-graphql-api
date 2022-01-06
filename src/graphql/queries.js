@@ -71,7 +71,7 @@ query GetComment($id: ID!) {
       postBody
       createdAt
       comments {
-        
+        nextToken
       }
       likes {
         nextToken
@@ -108,7 +108,7 @@ query ListComments(
   }
 }
 `;
-export const getLike = `query GetLike($id: ID!) {
+export const getLike = /* GraphQL */ `query GetLike($id: ID!) {
   getLike(id: $id) {
     id
     numberLikes
@@ -131,7 +131,7 @@ export const getLike = `query GetLike($id: ID!) {
   }
 }
 `;
-export const listLikes = `query ListLikes(
+export const listLikes = /* GraphQL */ `query ListLikes(
   $filter: ModelLikeFilterInput
   $limit: Int
   $nextToken: String
