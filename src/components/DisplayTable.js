@@ -58,7 +58,7 @@ const DisplayTable = ({dispatch, data, isLoading}) => {
       { title: 'Post Title', field: 'postTitle' },
       { title: 'Created At', field: 'createdAt', type: 'date', format: 'dd/MM/yy' },
       { title: 'Post Body', field: 'postBody' },
-      { title: 'Post Owner Id', field: 'postOwnerId', type: 'numeric' 
+      { title: 'Post Owner Id', hidden: true, field: 'postOwnerId', type: 'numeric' 
     },
       { title: 'Post Owner Username', field: 'postOwnerUsername' },
     ]
