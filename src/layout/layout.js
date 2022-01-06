@@ -8,6 +8,7 @@ import Dashboard from "../pages/Dashboard"
 import Posts from "../pages/Posts"
 import Charts from "../pages/Charts"
 import Maps from "../pages/Maps"
+import Portfolio from "../pages/Portfolio"
 import Breadcrumbs from "./Breadcrumbs";
 
 const Layout = () => {
@@ -16,6 +17,7 @@ const Layout = () => {
         { path: "posts", element: <Posts /> },
         { path: "charts", element: <Charts /> },
         { path: "maps", element: <Maps /> },
+        {path: "portfolio", element: <Portfolio />}
     ]);
     return <div className="AppBody">
         <Breadcrumbs />

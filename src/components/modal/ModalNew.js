@@ -1,44 +1,48 @@
-import React from 'react'
-import PostsForm from "../../components/PostsForm";
-// import { onCreatePost } from './graphql/subscriptions';
+import React, { useState } from 'react'
 import { Modal, Button } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
-import { createPost } from "../../graphql/mutations";
-import { API, graphqlOperation } from 'aws-amplify';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-      width:400,
-      height: 1000,
-      backgroundColor: '#ffffff',
+    position: 'absolute',
+    width: 400,
+    backgroundColor: '#ffffff',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(4),
+    outile: "none"
   }
 }))
-
-export default function ModalNew({state, dispatch}) {
-  const classes = useStyles();
-  async function savePost() {
-    const { postBody, postOwnerId, postOwnerUsername, postTitle  } = state;
-    const result = await API.graphql(
-      graphqlOperation(createPost, { input: {postBody, postTitle, postOwnerId, postOwnerUsername }})
-    );
-    // console.log('Save post result: ', result);
-    dispatch({type: 'CLOSE_MODAL'})
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`
   }
+}
+
+export default function ModalNew({
+  open, handleClose, title, children
+}) {
+  const [modalStyle] = useState(getModalStyle)
+  const classes = useStyles();
+
   return (
-    <Modal open={state.isModalOpen}>
-        <div className={classes.paper}>
-         <h2>Create a new record</h2>
-         <PostsForm savePost={savePost} state={state} dispatch={dispatch} />
-            <Button 
-                color="secondary" 
-                variant="contained" 
-                fullWidth 
-                type="submit" 
-                onClick={() => dispatch({type: 'CLOSE_MODAL'})}
-            >
-              Cancel
+    <Modal open={open}>
+      <div className={classes.paper} style={modalStyle}>
+        <div>{title}</div>
+        {children}
+        <Button
+          color="secondary"
+          variant="contained"
+          fullWidth
+          type="submit"
+          onClick={() => handleClose()}
+        >
+          Cancel
             </Button>
-        </div>
-      </Modal>
+      </div>
+    </Modal>
   )
 }

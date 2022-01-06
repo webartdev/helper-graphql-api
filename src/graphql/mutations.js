@@ -35,7 +35,7 @@ mutation CreatePost(
   }
 }
 `;
-export const updatePost = `mutation UpdatePost(
+export const updatePost = /* GraphQL */ `mutation UpdatePost(
   $input: UpdatePostInput!
   $condition: ModelPostConditionInput
 ) {
@@ -46,29 +46,29 @@ export const updatePost = `mutation UpdatePost(
     postTitle
     postBody
     createdAt
-    comments {
-      items {
-        id
-        commentOwnerId
-        commentOwnerUsername
-        content
-        createdAt
-      }
-      nextToken
-    }
-    likes {
-      items {
-        id
-        numberLikes
-        likeOwnerId
-        likeOwnerUsername
-      }
-      nextToken
-    }
+    # comments {
+    #   items {
+    #     id
+    #     commentOwnerId
+    #     commentOwnerUsername
+    #     content
+    #     createdAt
+    #   }
+    #   nextToken
+    # }
+    # likes {
+    #   items {
+    #     id
+    #     numberLikes
+    #     likeOwnerId
+    #     likeOwnerUsername
+    #   }
+    #   nextToken
+    # }
   }
 }
 `;
-export const deletePost = `mutation DeletePost(
+export const deletePost = /* GraphQL */ `mutation DeletePost(
   $input: DeletePostInput!
   $condition: ModelPostConditionInput
 ) {

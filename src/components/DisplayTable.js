@@ -1,58 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react'
-import MaterialTable from 'material-table';
-import { API, graphqlOperation } from 'aws-amplify';
-import { listPosts } from '../graphql/queries';
-// import { onDeletePost, onCreatePost } from "../graphql/subscriptions";
-// import { updatePost } from '../graphql/mutations';
-import { CircularProgress } from "@material-ui/core"
 
-const DisplayTable = ({dispatch}) => {
-  // const { posts, state, dispatch, id, postBody, postOwnerId,
-  //   postOwnerUsername, postTitle, createdAt } = props;
+import React from 'react'
+import { CircularProgress, Button } from "@material-ui/core"
+import { ACTIONS } from '../reducers/modalReducer'
+import GeneralTable from "./GeneralTable"
 
-  const [data, setData] = useState([]);
+const AddNew = () => {
+  return (
+    <Button color="primary" variant="outlined">Add New Post</Button>
+  )
+}
 
-  // useEffect(() => {
-  //   let subscription = API.graphql(
-  //     graphqlOperation(onCreatePost)).subscribe({
-  //     next: ({provider, value}) => {
-  //     // console.log("provider value", value);
-  //     dispatch({type: 'UPDATE_POSTS', value: [value.data.onCreatePost]});
-  //   },
-  // });
-  // return () => subscription.unsubscribe();
-  // }, [])
-
-  //   async function editPost() {
-  //     const {id, postBody, postOwnerId, postOwnerUsername, postTitle} = state;
-  //     const result = await API.graphql(
-  //       graphqlOperation(updatePost, { input: { id, postBody, postOwnerId, postOwnerUsername, postTitle }})
-  //     );
-  //     console.log('Updated: ', result);
-  //   }
-
-  //not correct to check
-  // useEffect(() => {
-  //   let subscription = API.graphql(graphqlOperation(onDeletePost)).subscribe({
-  //     next: ({provider, value}) => {
-  //     console.log("provider value", value);
-  //     dispatch({type: 'UPDATE_POSTS', value: id});
-  //   },
-  // });
-  // return () => subscription.unsubscribe();
-  // }, [])
-
-  // return (
-  //   <div>
-  //     <h6>{postBody} {postOwnerId} {postOwnerUsername} 
-  //     {new Date(createdAt).toDateString()} 
-  //      {postTitle}
-  //      <button onClick={() => dispatch({type:'DELETE_POST', value: id})}>DELETE</button>
-  //      </h6>
-  //   </div>
-  // )
+const DisplayTable = ({dispatch, data, isLoading}) => {
+  const relevantData = data?.data.listPosts.items
 
   const tablePageSize = 5
+  
+  const actions = [
+    {
+      icon: () => <AddNew />,
+      tooltip: "Add New Post",
+      isFreeAction: true,
+      onClick: (rowData) => {
+        dispatch({type: ACTIONS.MODAL_TYPE, payload: "create"})
+        dispatch({type: ACTIONS.OPEN_MODAL})
+      }
+    },
+    // {
+    //   icon: "edit",
+    //   tooltip: "Edit Post",
+    //   onClick: (rowData) => {
+    //     console.log("ACTIONS.FORM_VALUES", ACTIONS.FORM_VALUES)
+    //     dispatch({type: ACTIONS.FORM_VALUES, payload: rowData})
+    //     dispatch({type: ACTIONS.MODAL_TYPE, payload: "update"})
+    //     dispatch({type: ACTIONS.OPEN_MODAL})
+    //   }
+    // }
+  ]
 
   const defaultOptions = {
     options: {
@@ -61,58 +44,32 @@ const DisplayTable = ({dispatch}) => {
       grouping: true,
       padding: "dense",
       pageSize: tablePageSize,
-      pageSizeOptions: [5, 10, 20, { value: data.length, label: 'All' }],
-      // paginationPosition: "both",
-      actionsColumnIndex: -1,
+      pageSizeOptions: [5, 10, 20, 
+        { value: relevantData && relevantData.length, label: 'All' }
+      ],
+      paginationPosition: "both",
+      // actionsColumnIndex: -1,
       addRowPosition: "first",
       awareOfUnicodeTokens: true
     },
     columns: [
-      { title: 'ID', field: 'id' },
+      { title: 'ID', field: 'id', hidden: true, editable: "never" },
       { title: 'Post Title', field: 'postTitle' },
       { title: 'Created At', field: 'createdAt', type: 'date', format: 'dd/MM/yy' },
       { title: 'Post Body', field: 'postBody' },
-      { title: 'Post Owner Id', field: 'postOwnerId', type: 'numeric' },
+      { title: 'Post Owner Id', field: 'postOwnerId', type: 'numeric' 
+    },
       { title: 'Post Owner Username', field: 'postOwnerUsername' },
     ]
   }
 
-  // const tableRef = useRef(null)
-
-  // const newPageSize = 10
-
-  // useEffect(() => {
-  //   tableRef.current.dataManager.changePageSize(newPageSize)
-  // }, [])
-
-  const getPosts = async () => {
-    const result = await API.graphql(graphqlOperation(listPosts));
-    // setPosts(result.data.listPosts.items);
-    // dispatch({type: 'UPDATE_POSTS', value: result.data.listPosts.items})
-    console.log('Display All posts: ', result.data.listPosts.items);
-    // setData(result.data.listPosts.items)
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        setData(result.data.listPosts.items)
-
-        resolve();
-      }, 1000);
-    })
-
-  };
-
-  useEffect(() => {
-    getPosts();
-  }, []);
-
   return (
-
-    <MaterialTable
-      // tableRef={tableRef}
+    <GeneralTable
       title="Post Records"
       columns={defaultOptions.columns}
       options={defaultOptions.options}
-      data={data}
+      data={relevantData || []}
+      actions={actions}
       localization={{
         body: {
           emptyDataSourceMessage: (
@@ -123,30 +80,30 @@ const DisplayTable = ({dispatch}) => {
           )
         }
       }}
-      editable={{
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              const dataUpdate = [...data];
-              const index = oldData.id;
-              dataUpdate[index] = newData;
-              setData([...dataUpdate]);
-              dispatch({ type: 'EDIT_POST', value: index })
-              resolve();
-            }, 1000)
-          }),
-        onRowDelete: oldData =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              const dataDelete = [...data];
-              const index = oldData.id;
-              console.log("id", oldData.id)
-              dataDelete.splice(index, 1);
-              dispatch({ type: 'DELETE_POST', value: index })
-              resolve();
-            }, 1000);
-          })
-      }}
+      // editable={{
+      //   onRowUpdate: (newData, oldData) =>
+      //     new Promise((resolve, reject) => {
+      //       setTimeout(() => {
+      //         const dataUpdate = [...data];
+      //         const index = oldData.id;
+      //         dataUpdate[index] = newData;
+      //         // setData([...dataUpdate]);
+      //         dispatch({ type: 'EDIT_POST', value: index })
+      //         resolve();
+      //       }, 1000)
+      //     }),
+      //   onRowDelete: oldData =>
+      //     new Promise((resolve, reject) => {
+      //       setTimeout(() => {
+      //         const dataDelete = [...data];
+      //         const index = oldData.id;
+      //         console.log("id", oldData.id)
+      //         dataDelete.splice(index, 1);
+      //         dispatch({ type: 'DELETE_POST', value: index })
+      //         resolve();
+      //       }, 1000);
+      //     })
+      // }}
     />
   )
 }

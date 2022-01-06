@@ -2,37 +2,31 @@
 import Charts from "./assets/charts.jpg";
 import Maps from "./assets/maps.jpeg";
 import Portfolio from "./assets/portfolio.jpeg";
-import Posts from "./assets/posts.jpeg";
+import Posts from "./assets/table.jpg";
 
 const NavLinks = {
     data: [
         {
-            name: "Dashboard",
-            icon: "assesment",
-            url: "/",
-            // image: Portfolio
-        },
-        {
             name: "Potfolio",
-            icon: "assesment",
+            icon: "track_changes",
             url: "/portfolio",
             image: Portfolio
         },
         {
             name: "Posts",
-            icon: "map",
+            icon: "store_mall_directory",
             url: "/posts",
             image: Posts
         },
         {
             name: "Charts",
-            icon: "track_changes",
+            icon: "assessment",
             url: "/charts",
             image: Charts,
         },
         {
             name: "Maps",
-            icon: "store_mall_directory",
+            icon: "map",
             url: "/maps",
             image: Maps
         },

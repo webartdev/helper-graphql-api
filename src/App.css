@@ -22,7 +22,7 @@
 .App-header {
   text-align: center;
   background-color: #fff;
-  min-height: 3vh;
+  min-height: 1vh;
   display: flex;
   flex-direction: column;
   align-items: center;

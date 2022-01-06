@@ -2,75 +2,80 @@
 
 import React, { useReducer, useEffect } from 'react';
 import DisplayTable from '../components/DisplayTable';
-import postReducer, {initialState} from '../reducers/mainReducer';
-import { onCreatePost } from '../graphql/subscriptions';
-import ModalNew from '../components/modal/ModalNew';
+import { PostCRUD } from "./PostCRUD";
+import postReducer, { initialState } from '../reducers/mainReducer';
+import { updatePost } from '../graphql/mutations';
+import { ACTIONS, ModalReducer } from '../reducers/modalReducer';
+// import { onCreatePost } from '../graphql/subscriptions';
 
+// import { API, graphqlOperation } from 'aws-amplify';
 import PostsForm from "../components/PostsForm";
-// import { onCreatePost } from './graphql/subscriptions';
-import { Modal, Button } from "@material-ui/core"
-import { makeStyles } from "@material-ui/core/styles"
-import { createPost } from "../graphql/mutations";
-import { API, graphqlOperation } from 'aws-amplify';
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-      width:400,
-      height: 1000,
-      backgroundColor: '#ffffff',
-  }
-}))
-
-// const ModalNew = ({state, dispatch}) => {
-//   const classes = useStyles();
-//   async function savePost() {
-//     const { postBody, postOwnerId, postOwnerUsername, postTitle  } = state;
-//     const result = await API.graphql(
-//       graphqlOperation(createPost, { input: {postBody, postTitle, postOwnerId, postOwnerUsername }})
-//     );
-//     // console.log('Save post result: ', result);
-//     dispatch({type: 'CLOSE_MODAL'})
-//   }
-//   return (
-//     <Modal open={state.isModalOpen}>
-//         <div className={classes.paper}>
-//          <h2>Create a new record</h2>
-//          <PostsForm savePost={savePost} state={state} dispatch={dispatch} />
-//             <Button 
-//                 color="secondary" 
-//                 variant="contained" 
-//                 fullWidth 
-//                 type="submit" 
-//                 onClick={() => dispatch({type: 'CLOSE_MODAL'})}
-//             >
-//               Cancel
-//             </Button>
-//         </div>
-//       </Modal>
-//   )
-// }
-
+// import { createPost } from "../graphql/mutations";
 
 export default function Posts() {
-  const [state, dispatch] = useReducer(postReducer, initialState)
-  useEffect(() => {
-    let subscription = API.graphql(
-      graphqlOperation(onCreatePost)).subscribe({
-      next: ({provider, value}) => {
-      // console.log("provider value", value);
-      dispatch({type: 'UPDATE_POSTS', value: [value.data.onCreatePost]});
-    },
-  });
-  return () => subscription.unsubscribe();
-  }, [])
+  const { query, create, update } = PostCRUD();
+  // const [state, dispatch] = useReducer(postReducer, initialState)
+  const [state, dispatch] = ModalReducer();
+  // useEffect(() => {
+  //   let subscription = API.graphql(
+  //     graphqlOperation(onCreatePost)).subscribe({
+  //       next: ({ provider, value }) => {
+  //         // console.log("provider value", value);
+  //         dispatch({ type: 'UPDATE_POSTS', value: [value.data.onCreatePost] });
+  //       },
+  //     });
+  //   return () => subscription.unsubscribe();
+  // }, [])
+  // async function create() {
+  //   const { postBody, postOwnerId, postOwnerUsername, postTitle } = state;
+  //   const result = await API.graphql(
+  //     graphqlOperation(createPost, { input: { postBody, postTitle, postOwnerId, postOwnerUsername } })
+  //   );
+  //   console.log('Save post result: ', result);
+  //   dispatch({ type: 'CLOSE_MODAL' })
+  // }
+  const handleClose = () => {
+    // dispatch({ type: "CLOSE_MODAL" })
+    dispatch({ type: ACTIONS.CLOSE_MODAL })
+  }
+  //   useEffect(() => {
+  //   let subscription = API.graphql(
+  //     graphqlOperation(onCreatePost)).subscribe({
+  //     next: ({provider, value}) => {
+  //     // console.log("provider value", value);
+  //     dispatch({type: 'UPDATE_POSTS', value: [value.data.onCreatePost]});
+  //   },
+  // });
+  // return () => subscription.unsubscribe();
+  // }, [])
+
+    // async function update() {
+    //   const {id, postBody, postOwnerId, postOwnerUsername, postTitle} = state;
+    //   const result = await API.graphql(
+    //     graphqlOperation(updatePost, { input: { id, postBody, postOwnerId, postOwnerUsername, postTitle }})
+    //   );
+    //   console.log('Updated: ', result);
+    // }
   return (
-    <div className="AppBody">
-      <button onClick={() => dispatch({ type: 'OPEN_MODAL' })}><span>+ </span>Add New Record</button>
-      <ModalNew state={state} dispatch={dispatch} />
+    <div
+      className="AppBody" >
+      {/* <button onClick={() =>
+      //  dispatch({ type: "OPEN_MODAL" })
+        dispatch({ type: ACTIONS.OPEN_MODAL })
+      }><span>+ </span>Add New Record</button> */}
+      
+        <PostsForm
+          // savePost={savePost}
+          state={state}
+          dispatch={dispatch}
+          create={create} 
+          update={update}
+          handleClose={handleClose}
+        />
+ 
       {/* <UploadImage /> */}
-      <DisplayTable dispatch={dispatch} />
+      <DisplayTable dispatch={dispatch} isLoading={query.isLoading} data={query.data} />
       <br />
     </div>
-
   )
 }
