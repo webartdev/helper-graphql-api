@@ -1,5 +1,5 @@
 
-import Charts from "./assets/charts.jpeg";
+// import Charts from "./assets/charts.jpeg";
 import Maps from "./assets/maps.jpeg";
 import Portfolio from "./assets/portfolio.jpeg";
 import Posts from "./assets/table.jpg";
@@ -18,12 +18,12 @@ const NavLinks = {
             url: "/posts",
             image: Posts
         },
-        {
-            name: "Charts",
-            icon: "assessment",
-            url: "/charts",
-            image: Charts,
-        },
+        // {
+        //     name: "Charts",
+        //     icon: "assessment",
+        //     url: "/charts",
+        //     image: Charts,
+        // },
         {
             name: "Maps",
             icon: "map",
