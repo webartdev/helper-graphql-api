@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Portfolio() {
     return (
-        <div>
+        <div style={{textAlign: "left"}}>
             <h2>Software Engineer with focus on Front-End Development • Bothell, WA • Email: websiteart @ hotmail.com</h2>
             <h4>
                 <ul>
@@ -17,8 +17,10 @@ export default function Portfolio() {
                     <li>Video Editing Skills and Applications: Adobe Premiere Pro, Cyber Link Power Director, Wondershare Filmora</li>
                 </ul>
                 <h2>Portfolio</h2>
-           March 2020 to Present – team player within Lululemon Account (client facing) and Networking (internal tool) teams.
-           <br />
+                January 2022 to Present – Senior Software Engineer at LegalShield
+                <br/><br />
+           March 2020 to December 2021 – team player within Lululemon Account (client facing) and Networking (internal tool) teams.
+           <br /> 
            Software Engineer at Lululemon Athletica - Seattle, WA - https://shop.lululemon.com/ via Randstad Technologies.
            <ul>
                     <li>Participated in the migration of the login/account experiences from Vue to React and GraphQL while strengthening the security, scalability and performance standards.</li>
