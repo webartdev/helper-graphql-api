@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.1.10",
     "aws-amplify": "^4.3.1",
     "aws-amplify-react": "^5.1.2",
+    "aws-crt": "^1.12.4",
     "chart.js": "^3.6.2",
     "formik": "^2.2.9",
     "leaflet": "^1.7.1",
