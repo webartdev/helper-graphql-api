@@ -5,18 +5,13 @@ import {
   Typography
 } from "@material-ui/core";
 import NavLinks from "./NavLinks"
-// import { withRouter } from "react-router-dom";
+
 import {
-  // withRouter,
   BrowserRouter as Router,
-  useRoutes,
   useLocation,
   useNavigate,
-  useParams
 } from 'react-router-dom';
-// import NavLinks from ".//NavLinks";
-//#endregion
-//#endregion
+
 const getPageNames = () => {
   const flatten = (data) => {
     return data

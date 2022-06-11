@@ -22,12 +22,12 @@ const theme = {
           "&:hover": {
             boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
           },
-          "& .MuiCardMedia-root": {
-            paddingTop: "56.25%"
-          },
+          // "& .MuiCardMedia-root": {
+          //   paddingTop: "56.25%"
+          // },
           "& .MuiCardContent-root": {
             textAlign: "left",
-            padding: muiBaseTheme.spacing.unit * 3
+            // padding: muiBaseTheme.spacing.unit * 3
           },
           "& .MuiDivider-root": {
             margin: `${muiBaseTheme.spacing.unit * 3}px 0`

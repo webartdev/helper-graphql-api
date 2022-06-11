@@ -6,7 +6,7 @@ import {ShowMoreHook} from './ShowMoreHook'
 import { Button } from "@material-ui/core"
 
 export default function Dashboard() {
-    const initialNumber = 5
+    const initialNumber = 3
     const { data } = NavLinks;
     const {loadMore, dataArray, visible} = ShowMoreHook({allItems: data})
 

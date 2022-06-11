@@ -1,58 +1,52 @@
 
-import Charts from "./assets/charts.jpeg";
-import Maps from "./assets/maps.jpeg";
-import Portfolio from "./assets/portfolio.jpeg";
-import Posts from "./assets/table.jpg";
+// import Charts from "./assets/charts.jpeg";
+// import Maps from "./assets/maps.jpeg";
+// import Portfolio from "./assets/portfolio.jpeg";
+// import Posts from "./assets/table.jpg";
 
 const NavLinks = {
     data: [
         {
-            name: "Potfolio",
-            icon: "track_changes",
-            url: "/portfolio",
-            image: Portfolio
-        },
-        {
             name: "Posts",
             icon: "store_mall_directory",
             url: "/posts",
-            image: Posts
+            // image: Posts
         },
         {
             name: "Charts",
             icon: "assessment",
             url: "/charts",
-            image: Charts,
+            // image: Charts,
         },
         {
             name: "Maps",
             icon: "map",
             url: "/maps",
-            image: Maps
+            // image: Maps
         },
         {
-            name: "Likes",
+            name: "Potfolio",
             icon: "track_changes",
             url: "/portfolio",
-            image: Portfolio
+            // image: Portfolio
         },
         {
             name: "Some",
             icon: "store_mall_directory",
             url: "/posts",
-            image: Posts
+            // image: Posts
         },
         {
             name: "Here",
             icon: "assessment",
             url: "/charts",
-            image: Charts,
+            // image: Charts,
         },
         {
             name: "There",
             icon: "map",
             url: "/maps",
-            image: Maps
+            // image: Maps
         },
     ]
 }
