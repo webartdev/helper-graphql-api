@@ -49,7 +49,7 @@ export default function MapComponent() {
 
 
   return (
-    <div>Maps</div>
+    <div>Maps placeholder</div>
     // <MapContainer
     //   center={[20, 0]}
     //   zoom={zoom}
