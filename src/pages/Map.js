@@ -1,6 +1,4 @@
 import React, { useEffect } from "react"
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-// import L from 'leaflet'
 import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles(theme => ({

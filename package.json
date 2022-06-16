@@ -16,9 +16,6 @@
     "aws-crt": "^1.12.4",
     "chart.js": "^3.6.2",
     "formik": "^2.2.9",
-    "leaflet": "^1.7.1",
-    "leaflet-defaulticon-compatibility": "^0.1.1",
-    "leaflet-geosearch": "^3.1.0",
     "material-table": "^1.69.3",
     "material-ui-image": "^3.0.0",
     "next": "^10.0.0",
@@ -52,8 +49,5 @@
     "not dead",
     "not op_mini all",
     "ie >= 9"
-  ],
-  "devDependencies": {
-    "@types/leaflet": "^1.7.7"
-  }
+  ]
 }
